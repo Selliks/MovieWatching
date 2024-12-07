@@ -1,13 +1,19 @@
-from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from django.db import IntegrityError
-from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
-from .forms import LoginForm
+from .forms import LoginForm, RegisterForm
+
+from django.shortcuts import render, redirect
 
 
 def main(request):
-    return render(request, "main.html")
+    if request.user.is_authenticated:
+        return redirect('showcase')
+    return render(request, 'main.html')
+
+
+@login_required
+def showcase(request):
+    return render(request, "showcase.html")
 
 
 def login_view(request):
@@ -24,9 +30,18 @@ def login_view(request):
                 form.add_error(None, 'Invalid username or password')
     else:
         form = LoginForm()
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'register/login.html', {'form': form})
 
 
-@login_required
-def showcase(request):
-    return render(request, "showcase.html")
+def registration_view(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('showcase')
+    else:
+        form = RegisterForm()
+
+    return render(request, 'register/registration.html', {'form': form})
+
