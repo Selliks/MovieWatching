@@ -37,6 +37,7 @@ class Movie(models.Model):
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     date_of_post = models.DateTimeField(auto_now_add=True)
+    release_date = models.DateField(blank=True, null=True)
 
     def __str__(self):
         return self.title
