@@ -1,7 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm, RegisterForm
-
 from django.shortcuts import render, redirect
 
 
@@ -25,11 +24,12 @@ def login_view(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('secret')
+                return redirect('showcase')
             else:
                 form.add_error(None, 'Invalid username or password')
     else:
         form = LoginForm()
+
     return render(request, 'register/login.html', {'form': form})
 
 
@@ -40,8 +40,9 @@ def registration_view(request):
             user = form.save()
             login(request, user)
             return redirect('showcase')
+        else:
+            print(f"Form errors: {form.errors}")
     else:
         form = RegisterForm()
 
     return render(request, 'register/registration.html', {'form': form})
-

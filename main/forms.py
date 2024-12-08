@@ -3,8 +3,16 @@ from django.contrib.auth.models import User
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField(max_length=100, label='Username')
-    password = forms.CharField(widget=forms.PasswordInput, label='Password')
+    username = forms.CharField(
+        max_length=100,
+        label='Username',
+        error_messages={'required': 'This field is required'}
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput,
+        label='Password',
+        error_messages={'required': 'This field is required'}
+    )
 
 
 class RegisterForm(forms.ModelForm):
@@ -23,3 +31,10 @@ class RegisterForm(forms.ModelForm):
             raise forms.ValidationError("Passwords don't match")
 
         return password_confirm
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.set_password(self.cleaned_data["password"])
+        if commit:
+            user.save()
+        return user
