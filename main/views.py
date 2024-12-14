@@ -1,13 +1,34 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
-from .forms import LoginForm, RegisterForm
+from django.http import JsonResponse
+from .forms import LoginForm, RegisterForm, MovieForm
 from django.shortcuts import render, redirect
+from decorators import author_required, admin_required
+from .models import Author
 
 
 def main(request):
     if request.user.is_authenticated:
         return redirect('showcase')
     return render(request, 'main.html')
+
+
+@login_required
+def profile(request):
+    return render(request, "profile.html")
+
+
+@author_required
+def add_movie(request):
+    if request.method == 'POST':
+        form = MovieForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('showcase')
+    else:
+        form = MovieForm()
+
+    return render(request, 'profile.html', {'form': form})
 
 
 @login_required

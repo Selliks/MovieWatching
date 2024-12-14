@@ -2,17 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Showcase</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/showcase.css' %}">
 </head>
 <body>
-    <div class="menu">
-                <a href="{% url 'showcase' %}">Home</a>
-                <button class="menu-btn">Genres</button>
-                <button class="menu-btn">Authors</button>
-                <button class="menu-btn">My Profile</button>
-                <button class="menu-btn">Logout</button>
-            </div>
+    <div class="main-container">
+        <div class="menu">
+            <a href="{% url 'showcase' %}" class="menu-btn">Home</a>
+            <a href="#" class="menu-btn">Genres</a>
+            <a href="#" class="menu-btn">Authors</a>
+            <a href="#" class="menu-btn">My Profile</a>
+            <a href="#" class="menu-btn">Logout</a>
+        </div>
+
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
 </body>
 </html>

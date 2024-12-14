@@ -1,4 +1,3 @@
-
 body {
     background-color: #e8e8e8;
 }
@@ -18,19 +17,30 @@ body {
 }
 
 .menu-btn {
+    display: block;
     width: 100%;
     background-color: #34495e;
     color: #ecf0f1;
     padding: 15px 20px;
     border: none;
-    text-align: left;
+    text-align: center;
     font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s;
+    border-radius: 15px; /* Это делает кнопки закругленными */
+    text-transform: uppercase;
+    text-decoration: none; /* Убирает подчеркивание */
+    transition: background-color 0.3s, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .menu-btn:hover {
-    background-color: #1abc9c;
+    background-color: #1abc9c; /* Цвет кнопки при наведении */
+    transform: scale(1.05); /* Увеличение кнопки при наведении */
+}
+
+.menu-btn:focus {
+    background-color: #16a085; /* Цвет кнопки при фокусе */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .content {
