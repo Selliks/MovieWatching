@@ -16,7 +16,7 @@ def main(request):
 
 @login_required
 def profile(request):
-    return render(request, "profile/profile.html")
+    return render(request, "profile.html")
 
 
 @login_required
@@ -25,7 +25,7 @@ def logout_view(request):
         logout(request)
         messages.success(request, "You have been logged out successfully.")
         return redirect('main')
-    return render(request, 'register/logout.html')
+    return render(request, 'logout.html')
 
 
 @author_required
@@ -38,13 +38,13 @@ def add_movie(request):
     else:
         form = MovieForm()
 
-    return render(request, 'profile/profile.html', {'form': form})
+    return render(request, 'profile.html', {'form': form})
 
 
 @login_required
 def genre_view(request):
     genres = Genre.objects.all()
-    return render(request, "body/genre.html", {'genres': genres})
+    return render(request, "genre.html", {'genres': genres})
 
 
 @login_required

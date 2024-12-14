@@ -11,9 +11,6 @@ class MovieForm(forms.ModelForm):
     genre = forms.ModelChoiceField(queryset=Genre.objects.all(), empty_label="Choose genre")
 
 
-
-
-
 class LoginForm(forms.Form):
     username = forms.CharField(
         max_length=100,
