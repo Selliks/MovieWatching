@@ -1,10 +1,11 @@
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 from django.http import JsonResponse
 from .forms import LoginForm, RegisterForm, MovieForm
 from django.shortcuts import render, redirect
-from decorators import author_required, admin_required
-from .models import Author
+from .decorators import admin_required, author_required
+from .models import Genre, Movie
 
 
 def main(request):
@@ -15,7 +16,16 @@ def main(request):
 
 @login_required
 def profile(request):
-    return render(request, "profile.html")
+    return render(request, "profile/profile.html")
+
+
+@login_required
+def logout_view(request):
+    if request.method == 'POST':
+        logout(request)
+        messages.success(request, "You have been logged out successfully.")
+        return redirect('main')
+    return render(request, 'register/logout.html')
 
 
 @author_required
@@ -28,7 +38,22 @@ def add_movie(request):
     else:
         form = MovieForm()
 
-    return render(request, 'profile.html', {'form': form})
+    return render(request, 'profile/profile.html', {'form': form})
+
+
+@login_required
+def genre_view(request):
+    genres = Genre.objects.all()
+    return render(request, "body/genre.html", {'genres': genres})
+
+
+@login_required
+def get_movies_by_genre(request):
+    if request.is_ajax() and request.method == "GET":
+        genre_id = request.GET.get('genre_id')
+        movies = Movie.objects.filter(genre_id=genre_id)
+        movie_list = [{"id": movie.id, "title": movie.title} for movie in movies]
+        return JsonResponse({"movies": movie_list})
 
 
 @login_required

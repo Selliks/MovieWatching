@@ -1,4 +1,4 @@
-{% extends 'body.html' %}
+{% extends 'body/body.html' %}
 
 {% block head %}
     {% load static %}
@@ -17,12 +17,5 @@
         {% else %}
             <p class="no-movies">No movies available at the moment.</p>
         {% endif %}
-    </div>
-
-    <!-- Profile circle, leading to the profile page -->
-    <div class="profile-circle">
-        <a href="{% url 'user_profile' %}" class="profile-link">
-            <span class="profile-name">{{ user.first_name }} {{ user.last_name }}</span>
-        </a>
     </div>
 {% endblock %}

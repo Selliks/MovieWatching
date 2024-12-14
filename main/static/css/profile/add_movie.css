@@ -40,7 +40,6 @@ body {
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 400px;
-    text-align: center;
 }
 
 h2 {
@@ -50,30 +49,26 @@ h2 {
 
 .input-group {
     margin-bottom: 15px;
-    text-align: left;
 }
 
 .input-group label {
     font-size: 14px;
     color: #777;
-    margin-bottom: 5px;
-    display: block;
 }
 
 .input-group input,
-.input-group select {
+.input-group select,
+.input-group textarea {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    font-size: 14px;
-    color: #333;
 }
 
 .input-group input:focus,
-.input-group select:focus {
+.input-group select:focus,
+.input-group textarea:focus {
     border-color: #00aaff;
-    outline: none;
 }
 
 .btn {
@@ -84,8 +79,6 @@ h2 {
     font-size: 16px;
     border: none;
     border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
 }
 
 .btn:hover {

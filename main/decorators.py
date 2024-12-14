@@ -1,5 +1,5 @@
 from django.core.exceptions import PermissionDenied
-from models import CustomUser
+from .models import CustomUser
 
 
 def admin_required(view_func):

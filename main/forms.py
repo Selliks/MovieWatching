@@ -9,7 +9,9 @@ class MovieForm(forms.ModelForm):
         fields = ['title', 'description', 'age', 'genre', 'author', 'release_date']
 
     genre = forms.ModelChoiceField(queryset=Genre.objects.all(), empty_label="Choose genre")
-    author = forms.ModelChoiceField(queryset=Author.objects.all(), empty_label="Choose author")
+
+
+
 
 
 class LoginForm(forms.Form):

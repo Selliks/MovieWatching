@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Genres</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/body/genre.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="genre-container">
+        <h2>Select a Genre</h2>
+        <div class="button-container">
+            {% for genre in genres %}
+                <button class="genre-btn" data-genre-id="{{ genre.id }}">{{ genre.name }}</button>
+            {% endfor %}
+        </div>
+
+        <div id="movies-container" class="movies-container">
+            <!-- Movies will be displayed here -->
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('.genre-btn').on('click', function() {
+                var genreId = $(this).data('genre-id');
+                $.ajax({
+                    url: "{% url 'get_movies_by_genre' %}",  // URL для получения фильмов по жанру
+                    data: {
+                        'genre_id': genreId
+                    },
+                    success: function(data) {
+                        $('#movies-container').empty();  // Очищаем контейнер перед добавлением новых данных
+                        if (data.movies.length > 0) {
+                            $.each(data.movies, function(index, movie) {
+                                $('#movies-container').append('<div class="movie-item"><a href="/movies/' + movie.id + '/">' + movie.title + '</a></div>');
+                            });
+                        } else {
+                            $('#movies-container').append('<p>No movies found for this genre.</p>');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
