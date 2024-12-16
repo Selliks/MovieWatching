@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ movie.title }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/movie_detail.css' %}">
+</head>
+<body>
+    <div class="movie-detail-container">
+        <div class="movie-preview">
+            <img src="{{ movie.preview_image.url }}" alt="{{ movie.title }}" class="movie-detail-image">
+            <h2 class="movie-title">{{ movie.title }}</h2>
+            <p><strong>Description:</strong> {{ movie.description }}</p>
+            <p><strong>Age Rating:</strong> {{ movie.age }}</p>
+            <p><strong>Release Year:</strong> {{ movie.release_date.year }}</p>
+            <p><strong>Author:</strong> {{ movie.author }}</p>
+        </div>
+
+        <div class="movie-player">
+            {% if movie.video_file %}
+                <video width="600" controls>
+                    <source src="{{ movie.video_file.url }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            {% else %}
+                <p>No video available for this movie.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

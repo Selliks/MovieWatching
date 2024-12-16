@@ -1,37 +1,25 @@
 from django.core.exceptions import PermissionDenied
-from django.contrib.auth import get_user_model
-
-User = get_user_model()
 
 
 def admin_required(view_func):
-    """ Is it an admin """
+    """ Is it an admin (is_superuser) """
 
     def _wrapped_view(request, *args, **kwargs):
-        if not hasattr(request.user, 'roles'):
-            raise PermissionDenied("Access is allowed only to the admin")
-
-        user_roles = request.user.roles.all().values_list('name', flat=True)
-        if User.ROLE_ADMIN not in user_roles:
-            raise PermissionDenied("Access is allowed only to the admin")
+        if not request.user.is_superuser:
+            raise PermissionDenied("Access for an admin")
 
         return view_func(request, *args, **kwargs)
 
     return _wrapped_view
 
 
-def author_required(view_func):
-    """ Is it an admin or an author """
+def staff_required(view_func):
+    """ Is it a staff (is_staff) """
 
     def _wrapped_view(request, *args, **kwargs):
-        if not hasattr(request.user, 'roles'):
-            raise PermissionDenied("Access is allowed only to the author or admin")
-
-        user_roles = request.user.roles.all().values_list('name', flat=True)
-        if User.ROLE_AUTHOR not in user_roles and User.ROLE_ADMIN not in user_roles:
-            raise PermissionDenied("Access is allowed only to the author or admin")
+        if not request.user.is_superuser and not request.user.is_staff:
+            raise PermissionDenied("Access for a staff and an admin")
 
         return view_func(request, *args, **kwargs)
 
     return _wrapped_view
-

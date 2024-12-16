@@ -1,0 +1,27 @@
+.movie-detail-container {
+    display: flex;
+    padding: 20px;
+}
+
+.movie-preview {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.movie-detail-image {
+    width: 100%;
+    height: auto;
+}
+
+.movie-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.movie-player {
+    flex: 2; /* Плеер занимает больше места */
+}
+
+video {
+    width: 100%; /* Ширина плеера на всю ширину контейнера */
+}

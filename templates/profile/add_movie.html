@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Movie</title>
+    {% load static %}
     <link rel="stylesheet" href="{% static 'css/profile/add_movie.css' %}">
 </head>
 <body>
@@ -18,7 +19,7 @@
         <div class="content">
             <div class="form-container">
                 <h2>Add New Movie</h2>
-                <form method="post" enctype="multipart/form-data">
+                <form method="post" enctype="multipart/form-data"> <!-- Убедитесь, что enctype установлен -->
                     {% csrf_token %}
 
                     {% if form.errors %}
@@ -38,45 +39,75 @@
 
                     <div class="input-group">
                         <label for="title">Title:</label>
-                        {{ form.title }}  <!-- Используем поле формы -->
+                        {{ form.title }}
                     </div>
 
                     <div class="input-group">
                         <label for="description">Description:</label>
-                        {{ form.description }}  <!-- Используем поле формы -->
+                        {{ form.description }}
                     </div>
 
                     <div class="input-group">
                         <label for="age">Age Rating:</label>
-                        {{ form.age }}  <!-- Используем поле формы -->
+                        {{ form.age }}
                     </div>
 
                     <div class="input-group">
                         <label for="genre">Genre:</label>
-                        {{ form.genre }}  <!-- Используем поле формы -->
+                        {{ form.genre }}
                     </div>
 
                     <!-- Поле для ввода имени автора -->
                     <div class="input-group">
                         <label for="author">Author:</label>
-                        {{ form.author }}  <!-- Используем поле формы -->
+                        {{ form.author }}
                     </div>
 
+                    <!-- Поле для выбора даты релиза -->
                     <div class="input-group">
                         <label for="release_date">Release Date:</label>
-                        {{ form.release_date }}  <!-- Используем поле формы -->
+                        {{ form.release_date }}
                     </div>
 
                     <!-- Поле для загрузки изображения -->
                     <div class="input-group">
                         <label for="preview_image">Preview Image:</label>
-                        {{ form.preview_image }}  <!-- Используем поле формы -->
+                        {{ form.preview_image }}
                     </div>
+
+                    <!-- Поле для загрузки видео -->
+                    <div class="input-group">
+                        <label for="video_file">Video File:</label>
+                        {{ form.video_file }}
+                    </div>
+
+                    <!-- Превью изображения -->
+                    <img id="image-preview" src="#" alt="Image Preview" style="display:none; width:200px; margin-top:10px;" />
 
                     <button type="submit" class="btn">Add Movie</button>
                 </form>
             </div>
         </div>
     </div>
+
+    <!-- JavaScript для предварительного просмотра изображения -->
+    <script>
+        document.getElementById("id_preview_image").addEventListener("change", function(event) {
+            const previewImage = document.getElementById("image-preview");
+
+            const file = event.target.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;
+                }
+
+                reader.readAsDataURL(file);
+                previewImage.style.display = "block";
+            }
+        });
+    </script>
 </body>
 </html>

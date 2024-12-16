@@ -6,16 +6,22 @@
 {% endblock %}
 
 {% block content %}
-    <div class="movies-grid">
-        {% if movies %}
-            {% for movie in movies %}
-                <a href="{% url 'movie_detail' movie.id %}" class="movie-card">
-                    <img src="{{ movie.image.url }}" alt="{{ movie.title }}" class="movie-image">
-                    <h3 class="movie-title">{{ movie.title }}</h3>
-                </a>
-            {% endfor %}
-        {% else %}
-            <p class="no-movies">No movies available at the moment.</p>
-        {% endif %}
+    <div class="genres-container">
+        {% for genre, movies in movies_by_genre.items %}
+            <h2 class="genre-title">{{ genre.name }}</h2>
+            <div class="movies-grid">
+                {% if movies %}
+                    {% for movie in movies %}
+                        <a href="{% url 'movie_detail' movie.id %}" class="movie-card">
+                            <img src="{{ movie.preview_image.url }}" alt="{{ movie.title }}" class="movie-image">
+                            <h3 class="movie-title">{{ movie.title }}</h3>
+                            <p class="movie-age">Age: {{ movie.age }}</p>
+                        </a>
+                    {% endfor %}
+                {% else %}
+                    <p class="no-movies">No movies available in this genre.</p>
+                {% endif %}
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}

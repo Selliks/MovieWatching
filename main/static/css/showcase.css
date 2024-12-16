@@ -48,46 +48,59 @@ body {
     padding: 20px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* Изменено для выравнивания по верхнему краю */
     background-color: #ecf0f1;
 }
 
-.movies-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
+.genres-container {
     width: 100%;
+}
+
+.genre-title {
+    font-size: 24px; /* Размер заголовка жанра */
+    margin-bottom: 10px; /* Отступ снизу */
+}
+
+.movies-grid {
+    display: grid; /* Используем сетку для фильмов */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Адаптивные колонки */
+    gap: 20px; /* Отступы между карточками */
 }
 
 .movie-card {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    text-decoration: none;
-    color: #2c3e50;
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
+    background-color: #fff; /* Цвет фона карточки фильма */
+    border-radius: 10px; /* Закругленные углы */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Тень карточки */
+    overflow: hidden; /* Скрытие переполнения */
+    text-decoration: none; /* Убираем подчеркивание */
+    color: #2c3e50; /* Цвет текста */
+    text-align: center; /* Центрирование текста */
+    transition: transform 0.3s, box-shadow 0.3s; /* Плавные переходы */
 }
 
 .movie-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-10px); /* Подъем карточки при наведении */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Увеличение тени при наведении */
 }
 
 .movie-image {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
+    width: 100%; /* Ширина изображения на всю карточку */
+    height: auto; /* Автоматическая высота для сохранения пропорций */
 }
 
 .movie-title {
-    padding: 15px 0;
-    font-size: 18px;
-    font-weight: bold;
+    padding: 15px 0; /* Отступы сверху и снизу заголовка фильма */
+    font-size: 18px; /* Размер шрифта заголовка фильма */
+    font-weight: bold; /* Жирный шрифт */
+}
+
+.movie-age {
+   font-size: 14px; /* Размер шрифта для возраста фильма */
+   color: gray; /* Цвет текста для возраста */
+   margin-bottom: 15px; /* Отступ снизу от возраста до названия фильма */
 }
 
 .no-movies {
-    font-size: 20px;
-    color: #7f8c8d;
+   font-size: 20px; /* Размер шрифта для сообщения об отсутствии фильмов */
+   color: #7f8c8d; /* Цвет текста для сообщения об отсутствии фильмов */
 }

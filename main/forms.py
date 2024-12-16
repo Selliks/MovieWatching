@@ -1,12 +1,17 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Movie, Genre, Role
+from .models import Movie, Genre
 
 
 class MovieForm(forms.ModelForm):
+    release_date = forms.DateField(
+        widget=forms.DateInput(attrs={'type': 'date'}),
+        input_formats=['%Y-%m-%d'],
+    )
+
     class Meta:
         model = Movie
-        fields = ['title', 'description', 'age', 'genre', 'author', 'release_date', 'preview_image']
+        fields = ['title', 'description', 'age', 'genre', 'author', 'release_date', 'preview_image', 'video_file']
 
     genre = forms.ModelChoiceField(queryset=Genre.objects.all(), empty_label="Choose genre")
 
