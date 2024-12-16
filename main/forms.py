@@ -1,14 +1,19 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Movie, Genre, Author
+from .models import Movie, Genre, Role
 
 
 class MovieForm(forms.ModelForm):
     class Meta:
         model = Movie
-        fields = ['title', 'description', 'age', 'genre', 'author', 'release_date']
+        fields = ['title', 'description', 'age', 'genre', 'author', 'release_date', 'preview_image']
 
     genre = forms.ModelChoiceField(queryset=Genre.objects.all(), empty_label="Choose genre")
+
+
+class ChangeUserStatusForm(forms.Form):
+    username = forms.CharField(max_length=150, label='Username')
+    status = forms.ChoiceField(choices=[('user', 'User'), ('author', 'Author')], label='Status')
 
 
 class LoginForm(forms.Form):

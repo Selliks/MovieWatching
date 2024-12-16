@@ -27,19 +27,19 @@ body {
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    border-radius: 15px; /* Это делает кнопки закругленными */
+    border-radius: 15px;
     text-transform: uppercase;
-    text-decoration: none; /* Убирает подчеркивание */
+    text-decoration: none;
     transition: background-color 0.3s, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .menu-btn:hover {
-    background-color: #1abc9c; /* Цвет кнопки при наведении */
-    transform: scale(1.05); /* Увеличение кнопки при наведении */
+    background-color: #1abc9c;
+    transform: scale(1.05);
 }
 
 .menu-btn:focus {
-    background-color: #16a085; /* Цвет кнопки при фокусе */
+    background-color: #16a085;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 

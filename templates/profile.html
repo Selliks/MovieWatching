@@ -13,10 +13,35 @@
 
         <!-- Add Movie buttons for authors and admins -->
         {% if user.is_authenticated %}
-            {% if user.is_author or user.is_admin %}
+            {% if user.is_author or user.is_superuser %}
                 <div class="add-buttons">
-                    <a href="{% url 'add_movie' %}" class="add-btn">Add Movie</a>
+                    <a href="{% url 'profile/add_movie' %}" class="add-btn">Add Movie</a>
                 </div>
+            {% endif %}
+
+            <!-- Change Permission button -->
+            {% if user.is_superuser %}
+                <div class="permission-buttons">
+                    <a href="{% url 'change_permission' %}" class="change-permission-btn">Change Permission</a>
+                </div>
+            {% endif %}
+        {% endif %}
+
+        <!-- Change User Status Section -->
+        {% if user.is_superuser %}
+            <h3>Change User Status</h3>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="confirm-btn">Confirm</button>
+            </form>
+
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
             {% endif %}
         {% endif %}
     </div>

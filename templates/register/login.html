@@ -11,7 +11,7 @@
     <div class="container">
         <div class="form-container">
             <h2>Login</h2>
-            <form action="{% url 'login' %}" method="POST">
+            <form action="{% url 'register/login' %}" method="POST">
                 {% csrf_token %}
 
                 {% if form.non_field_errors %}
@@ -49,7 +49,7 @@
                 <button type="submit" class="btn">Log In</button>
             </form>
 
-            <p class="toggle-form">Don't have an account? <a href="{% url 'registration' %}">Register</a></p>
+            <p class="toggle-form">Don't have an account? <a href="{% url 'register/registration' %}">Register</a></p>
         </div>
     </div>
 </body>

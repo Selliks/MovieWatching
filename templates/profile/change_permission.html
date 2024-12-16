@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Permission</title>
+</head>
+<body>
+    <h2>Change User Permission</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="input-group">
+            <label for="username">Username:</label>
+            {{ form.username }}
+        </div>
+
+        <div class="input-group">
+            <label for="status">Status:</label>
+            {{ form.status }}
+        </div>
+
+        <button type="submit">Update Permissions</button>
+    </form>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

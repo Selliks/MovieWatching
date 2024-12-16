@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import (main, showcase, login_view, registration_view, profile, add_movie, logout_view,
-                    genre_view, get_movies_by_genre)
+                    genre_view, get_movies_by_genre, change_permission_view)
 
 urlpatterns = [
     path('', main, name='main'),
@@ -12,4 +12,5 @@ urlpatterns = [
     path('logout/', logout_view, name='logout'),
     path('genre/', genre_view, name='genre'),
     path('get_movies/', get_movies_by_genre, name='get_movies_by_genre'),
+    path('profile/change-permission/', change_permission_view, name='change_permission'),
 ]
