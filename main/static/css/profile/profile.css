@@ -1,56 +1,44 @@
-/* Стили для профиля пользователя */
-.profile-circle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    width: 60px;
-    height: 60px;
-    background-color: #1abc9c;
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.profile-link {
-    color: white;
-    text-decoration: none;
-}
-
-.profile-name {
-    text-transform: uppercase;
-    font-size: 14px;
-}
-
-/* Стиль для контейнера профиля */
 .profile-container {
-    padding: 20px;
-    background-color: #ecf0f1;
-    border-radius: 10px;
-    width: 80%;
-    margin: 50px auto;
-    text-align: center;
+    background-color: #fff; /* Цвет фона контейнера */
+    border-radius: 10px; /* Закругленные углы */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Тень контейнера */
+    padding: 20px; /* Отступы внутри контейнера */
+    max-width: 600px; /* Максимальная ширина контейнера */
+    margin: auto; /* Центрирование контейнера */
 }
 
-.add-buttons {
-    margin-top: 30px;
+h2 {
+    font-size: 24px; /* Размер заголовка */
+    margin-bottom: 20px; /* Отступ снизу */
+}
+
+p {
+    font-size: 18px; /* Размер текста для информации о пользователе */
+    margin-bottom: 10px; /* Отступ снизу */
+}
+
+.messages {
+    list-style-type: none; /* Убираем маркеры списка */
+    padding: 0; /* Убираем отступы */
+}
+
+.messages li {
+    background-color: #dff0d8; /* Цвет фона для сообщений */
+    color: #3c763d; /* Цвет текста для сообщений */
+    padding: 10px; /* Отступы внутри сообщения */
+    border-radius: 5px; /* Закругленные углы сообщения */
+    margin-bottom: 10px; /* Отступ снизу от сообщения */
 }
 
 .add-btn {
-    background-color: #1abc9c;
+    display: inline-block;
+    background-color: #5cb85c;
     color: white;
     padding: 10px 15px;
     border-radius: 5px;
     text-decoration: none;
-    text-align: center;
-    font-weight: bold;
-    transition: background-color 0.3s;
 }
 
 .add-btn:hover {
-    background-color: #16a085;
+    background-color: #4cae4c;
 }

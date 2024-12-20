@@ -24,8 +24,8 @@ def profile(request):
 @login_required
 def showcase(request):
     genres = Genre.objects.all()
-    movies = Movie.objects.all()
-    return render(request, "showcase.html", {'genres': genres, 'videos': movies})
+    movies_by_genre = {genre: Movie.objects.filter(genre=genre) for genre in genres}
+    return render(request, "showcase.html", {'movies_by_genre': movies_by_genre})
 
 
 @login_required

@@ -48,7 +48,7 @@ body {
     padding: 20px;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Изменено для выравнивания по верхнему краю */
+    align-items: flex-start; /* Выравнивание по верхнему краю */
     background-color: #ecf0f1;
 }
 
@@ -62,8 +62,8 @@ body {
 }
 
 .movies-grid {
-    display: grid; /* Используем сетку для фильмов */
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Адаптивные колонки */
+    display: flex; /* Используем flex для горизонтального выстраивания фильмов */
+    flex-wrap: wrap; /* Позволяет элементам переноситься на следующую строку */
     gap: 20px; /* Отступы между карточками */
 }
 
@@ -74,30 +74,36 @@ body {
     overflow: hidden; /* Скрытие переполнения */
     text-decoration: none; /* Убираем подчеркивание */
     color: #2c3e50; /* Цвет текста */
-    text-align: center; /* Центрирование текста */
-    transition: transform 0.3s, box-shadow 0.3s; /* Плавные переходы */
+    text-align: left; /* Выровнять текст по левому краю */
+    padding: 10px; /* Отступы внутри карточки */
+
+    /* Установите максимальную ширину для карточек */
+    max-width: 200px; /* Вы можете изменить это значение по своему усмотрению */
+    padding-right: 0px;
+    padding-left: 18px;
 }
 
 .movie-card:hover {
     transform: translateY(-10px); /* Подъем карточки при наведении */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Увеличение тени при наведении */
 }
 
 .movie-image {
-    width: 100%; /* Ширина изображения на всю карточку */
+    width: auto; /* Автоматическая ширина изображения для сохранения пропорций */
+    max-width: calc(100% - 20px); /* Максимальная ширина на всю карточку с учетом отступов */
     height: auto; /* Автоматическая высота для сохранения пропорций */
 }
 
 .movie-title {
-    padding: 15px 0; /* Отступы сверху и снизу заголовка фильма */
+    padding-top: 10px; /* Отступ сверху заголовка фильма */
     font-size: 18px; /* Размер шрифта заголовка фильма */
     font-weight: bold; /* Жирный шрифт */
 }
 
+.movie-author,
 .movie-age {
-   font-size: 14px; /* Размер шрифта для возраста фильма */
-   color: gray; /* Цвет текста для возраста */
-   margin-bottom: 15px; /* Отступ снизу от возраста до названия фильма */
+   font-size: 14px; /* Размер шрифта для автора и возраста фильма */
+   color: gray; /* Цвет текста для автора и возраста */
+   margin-bottom: 5px; /* Отступ снизу от текста до следующего элемента */
 }
 
 .no-movies {
